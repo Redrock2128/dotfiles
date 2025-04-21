@@ -1,0 +1,127 @@
+set $mod Mod4
+font pango:monospace 8
+
+exec --no-startup-id dex --autostart --environment i3
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+# Shortcuts
+bindsym $mod+Return exec kitty 
+bindsym $mod+q kill
+bindsym $mod+Delete exec i3lock -i ~/.config/i3/lock.png
+bindsym $mod+space exec --no-startup-id rofi -show drun -show-icons
+
+# Autostart
+exec --no-startup-id polybar -r
+exec --no-startup-id  /usr/lib/polkit-1/polkit-agent-helper-1
+exec nitrogen --restore
+exec picom -bf ~/.config/picom/picom.conf
+exec autorandr -l default
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+f fullscreen toggle
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+ampersand workspace number $ws1
+bindsym $mod+eacute workspace number $ws2
+bindsym $mod+quotedbl workspace number $ws3
+bindsym $mod+apostrophe workspace number $ws4
+bindsym $mod+parenleft workspace number $ws5
+bindsym $mod+minus workspace number $ws6
+bindsym $mod+egrave workspace number $ws7
+bindsym $mod+underscore workspace number $ws8
+bindsym $mod+ccedilla workspace number $ws9
+bindsym $mod+agrave workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace number $ws1
+bindsym $mod+Shift+eacute move container to workspace number $ws2
+bindsym $mod+Shift+quotedbl move container to workspace number $ws3
+bindsym $mod+Shift+apostrophe move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+minus move container to workspace number $ws6
+bindsym $mod+Shift+egrave move container to workspace number $ws7
+bindsym $mod+Shift+underscore move container to workspace number $ws8
+bindsym $mod+Shift+ccedilla move container to workspace number $ws9
+bindsym $mod+Shift+agrave move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym Mod1+Ctrl+Espace exec pkill i3
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
