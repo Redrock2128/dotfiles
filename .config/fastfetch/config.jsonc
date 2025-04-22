@@ -1,0 +1,74 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty-direct",
+    "source": "~/.config/fastfetch/fetch.png",
+  },
+  "display": {
+    "separator": " • ",
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "format": "             {6}{7}{8}",
+    },
+    "break", 
+    {
+      "type": "custom",
+      "format": "_______________ Hardware _______________",
+    },
+    "break",
+    {
+      "type": "host",
+      "key": "  PC ",
+    },
+    {
+      "type": "cpu",
+      "key": "  CPU",
+    },
+    {
+      "type": "memory",
+      "key": "  RAM",
+    },
+    {
+      "type": "disk",
+      "key": "  SSD",
+    }, 
+    {
+    "type": "gpu",
+    "key": "󱤓  GPU",
+    },
+    {
+      "type": "battery",
+      "key": "  BAT",
+    },
+    "poweradapter",
+    "break",
+    {
+      "type": "custom",
+      "format": "_______________ Software _______________",
+    },
+    "break",
+    {
+      "type": "os",
+      "key": "󰣇 OS ",
+    },
+    {
+      "type": "kernel",
+      "key": " Ver",
+    },
+    {
+      "type": "uptime",
+      "key": " UP ",
+    },
+    {
+      "type": "shell",
+      "key": " SH ",
+    },
+    {
+      "type": "terminal",
+      "key": " TER",
+    },
+  ]
+}
