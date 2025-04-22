@@ -18,7 +18,7 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec kitty 
 bindsym $mod+q kill
 bindsym --release $mod+Shift+q exec xkill
-bindsym $mod+Delete exec i3lock -i ~/.config/i3/lock.png
+bindsym $mod+Delete exec i3lock -i ~/.config/i3/lock.jsl1
 bindsym $mod+space exec --no-startup-id rofi -show drun -show-icons
 
 # Autostart
